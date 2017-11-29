@@ -17,6 +17,7 @@ CREATE TABLE products (
   manufacturer_id BINARY(16) NOT NULL,
   price DECIMAL(7,2) NOT NULL,
   PRIMARY KEY (id),
+  UNIQUE KEY `PRODUCT_MANUFACTURER_idx` (name,manufacturer_id),
   KEY FK_MANUFACTURER_idx (manufacturer_id),
   CONSTRAINT FK_PRODUCTS_MANUFACTURER FOREIGN KEY (manufacturer_id) REFERENCES manufacturers (id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
