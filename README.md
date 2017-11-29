@@ -7,13 +7,13 @@ JavaDeveloperModule4
 <h3>Необходимо создать веб-приложение, которое позволяет выполнять CRUD<br>
 операции над следующими объектами:</h3>
 <p>==========================</p>
-<b>Product:</b>
+<b>Product:</b><br>
 UUID id;
 String name;
 BigDecimal price;
 Manufacturer manufacturer;
 <p>==========================</p>
-<b>Manufacturer</b>
+<b>Manufacturer:</b><br>
 UUID id;
 String name;
 Set products;
