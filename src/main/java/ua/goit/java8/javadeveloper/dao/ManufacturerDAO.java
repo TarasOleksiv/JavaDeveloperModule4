@@ -7,5 +7,5 @@ import java.util.UUID;
 /**
  * Created by t.oleksiv on 30/11/2017.
  */
-public interface ManufacturerDAO extends GenericDAO<Manufacturer,UUID> {
+public interface ManufacturerDAO extends GenericDAO<Manufacturer,UUID,String> {
 }

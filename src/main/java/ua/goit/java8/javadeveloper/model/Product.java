@@ -63,6 +63,14 @@ public class Product {
         return this;
     }
 
+    public String printPureProduct(){
+        return "Product{" +
+                "id=" + id.toString() +
+                ", name='" + name + '\'' +
+                ", price= " + price +
+                "}";
+    }
+
     @Override
     public String toString(){
         return "Product{" +

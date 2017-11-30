@@ -62,6 +62,32 @@ public class HibernateProductDAOImpl implements ProductDAO {
     }
 
     @Override
+    public List<Product> getByName(String name) {
+        Session session = null;
+        Transaction tx = null;
+        List<Product> result = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            tx = session.beginTransaction();
+
+            // HQL
+            Query query = session.createQuery("FROM Product WHERE name = :name");
+            query.setParameter("name",name);
+            List<Product> results = (List<Product>) query.list();
+
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return result;
+    }
+
+    @Override
     public void create(Product product) {
         Session session = null;
         Transaction tx = null;
@@ -133,4 +159,5 @@ public class HibernateProductDAOImpl implements ProductDAO {
             }
         }
     }
+
 }

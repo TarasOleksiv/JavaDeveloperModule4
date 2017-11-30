@@ -59,7 +59,7 @@ public class Manufacturer {
     private String showProducts(){
         String result = "";
         for (Product product: products){
-            result += product + ",\n    ";
+            result += product.printPureProduct() + ",\n    ";
         }
         return result;
     }

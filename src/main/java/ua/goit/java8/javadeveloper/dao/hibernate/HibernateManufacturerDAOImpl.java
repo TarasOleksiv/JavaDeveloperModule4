@@ -79,12 +79,40 @@ public class HibernateManufacturerDAOImpl implements ManufacturerDAO {
     }
 
     @Override
+    public List<Manufacturer> getByName(String name) {
+        Session session = null;
+        Transaction tx = null;
+        List<Manufacturer> results = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            tx = session.beginTransaction();
+
+            // HQL
+            Query query = session.createQuery("FROM Manufacturer WHERE name = :name");
+            query.setParameter("name",name);
+            results = (List<Manufacturer>) query.list();
+
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return results;
+    }
+
+    @Override
     public void create(Manufacturer manufacturer) {
         Session session = null;
         Transaction tx = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             tx = session.beginTransaction();
+
+
             // HQL
             // перевірка чи виробник з таким name існує
             Query query = session.createQuery("FROM Manufacturer WHERE name = :name");
@@ -96,6 +124,7 @@ public class HibernateManufacturerDAOImpl implements ManufacturerDAO {
                 session.save(manufacturer);
                 System.out.println("Виробника створено успішно.");
             }
+
             session.getTransaction().commit();
         } catch (HibernateException e) {
             if (tx!=null) tx.rollback();
@@ -149,4 +178,5 @@ public class HibernateManufacturerDAOImpl implements ManufacturerDAO {
             }
         }
     }
+
 }
