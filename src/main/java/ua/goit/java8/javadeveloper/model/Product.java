@@ -49,7 +49,7 @@ public class Product {
     }
 
     public Product withName(String name){
-        this.id = id;
+        this.name = name;
         return this;
     }
 

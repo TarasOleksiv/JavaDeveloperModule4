@@ -51,22 +51,23 @@ public class ProductController {
     }
 
     public void create() {
-        System.out.println("Введіть через пробіл наступні значення: ");
-        System.out.println("Назва_Товару Назва_Виробника Ціна");
-        String delims = "[ ]";
+        System.out.println("Введіть через крапку з комою наступні значення: ");
+        System.out.println("Назва Товару;Назва Виробника;Ціна");
+        String delims = "[;]";
         String[] line;
         line = sc.nextLine().split(delims);
         String nameProduct = line[0];
         String nameManufacturer = line[1];
         BigDecimal price = new BigDecimal(line[2]);
 
-        Manufacturer manufacturer = manufacturerDAO.getByName(nameManufacturer).get(0);
+        List<Manufacturer> manufacturers = manufacturerDAO.getByName(nameManufacturer);
         // перевіряєм чи виробник існує
-        if (manufacturer == null){
+        if (manufacturers == null || manufacturers.size() == 0){
             System.out.println("Виробник з назвою " + nameManufacturer + " відсутній.");
             return;
         }
 
+        Manufacturer manufacturer = manufacturers.get(0);
         Product product = new Product();
         product.withName(nameProduct)
                 .withManufacturer(manufacturer)
@@ -80,21 +81,23 @@ public class ProductController {
         List<Product> products = productDAO.getByName(nameExists);  //перевірка чи товар з такою назвою існує
 
         if (products != null && products.size() > 0){
-            System.out.println("Введіть через пробіл наступні значення: ");
-            System.out.println("Назва_Товару Назва_Виробника Ціна");
-            String delims = "[ ]";
+            System.out.println("Введіть через крапку з комою наступні значення: ");
+            System.out.println("Назва Товару;Назва Виробника;Ціна");
+            String delims = "[;]";
             String[] line;
             line = sc.nextLine().split(delims);
             String nameProduct = line[0];
             String nameManufacturer = line[1];
             BigDecimal price = new BigDecimal(line[2]);
 
-            Manufacturer manufacturer = manufacturerDAO.getByName(nameManufacturer).get(0);
+            List<Manufacturer> manufacturers = manufacturerDAO.getByName(nameManufacturer);
             // перевіряєм чи виробник існує
-            if (manufacturer == null){
+            if (manufacturers == null || manufacturers.size() == 0){
                 System.out.println("Виробник з назвою " + nameManufacturer + " відсутній.");
                 return;
             }
+
+            Manufacturer manufacturer = manufacturers.get(0);
 
             Product product = products.get(0);
 

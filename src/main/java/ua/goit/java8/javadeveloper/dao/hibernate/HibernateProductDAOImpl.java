@@ -73,7 +73,7 @@ public class HibernateProductDAOImpl implements ProductDAO {
             // HQL
             Query query = session.createQuery("FROM Product WHERE name = :name");
             query.setParameter("name",name);
-            List<Product> results = (List<Product>) query.list();
+            result = (List<Product>) query.list();
 
             session.getTransaction().commit();
         } catch (HibernateException e) {
