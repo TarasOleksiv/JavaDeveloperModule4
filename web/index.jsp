@@ -13,7 +13,12 @@
     <title>JSP Page</title>
 </head>
 <body>
-<h1>Студенческий отдел кадров</h1>
-<a href="${pageContext.request.contextPath}/main.jsp">Переход на главную страницу</a>
+<h1>Manufacturers and Products</h1>
+
+<table>
+    <tr><td><a href="${pageContext.request.contextPath}/showManufacturers">Manufacturers</a></td></tr>
+    <tr><td><a href="${pageContext.request.contextPath}/products.jsp">Products</a></td></tr>
+</table>
+
 </body>
 </html>
