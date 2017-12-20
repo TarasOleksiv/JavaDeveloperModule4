@@ -14,6 +14,11 @@
         <servlet-class>ua.goit.java8.javadeveloper.controller.servlet.ManufacturerEditServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ProductListServlet</servlet-name>
+        <servlet-class>ua.goit.java8.javadeveloper.controller.servlet.ProductListServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>ManufacturerListServlet</servlet-name>
         <url-pattern>/showManufacturers</url-pattern>
@@ -22,6 +27,11 @@
     <servlet-mapping>
         <servlet-name>ManufacturerEditServlet</servlet-name>
         <url-pattern>/editManufacturer</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ProductListServlet</servlet-name>
+        <url-pattern>/showProducts</url-pattern>
     </servlet-mapping>
 
 </web-app>

@@ -20,18 +20,14 @@
     <CAPTION>List of Manufacturers</CAPTION>
     <tr>
         <th></th>
-        <th>id</th>
-        <th>name</th>
-        <th></th>
-        <th></th>
+        <th>Id</th>
+        <th>Name</th>
     </tr>
     <c:forEach items="${list}" var="list">
         <tr>
             <th><input type="radio" name="manufacturerId" value="${list.id}"></th>
             <th>${list.id}</th>
             <th>${list.name}</th>
-            <th><a href="/showManufacturers?action=update&id=<c:out value="${list.id}"/>">update</a> </th>
-            <th><a href="/showManufacturers?action=delete&id=${list.id}">delete</a> </th>
         </tr>
     </c:forEach>
 </table>

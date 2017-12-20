@@ -31,7 +31,7 @@ public class ManufacturerEditServlet extends HttpServlet {
             requestDispatcher.forward(request,response);
         }
 
-        if(request.getParameter("Cancel")!= null) {  //при натисканні на кнопку Cancell
+        if(request.getParameter("Cancel")!= null) {  //при натисканні на кнопку Cancel
             request.setAttribute("list",manufacturerDAO.getAll());  //створюєм атрибут який виводить список всіх виробників
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("manufacturersList.jsp");  //перескакуєм на manufacturersList.jsp
             requestDispatcher.forward(request,response);

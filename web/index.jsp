@@ -16,8 +16,8 @@
 <h1>Manufacturers and Products</h1>
 
 <table>
-    <tr><td><a href="${pageContext.request.contextPath}/showManufacturers">Manufacturers</a></td></tr>
-    <tr><td><a href="${pageContext.request.contextPath}/products.jsp">Products</a></td></tr>
+    <tr><td><a href="${pageContext.request.contextPath}/showManufacturers"><h2>Manufacturers</h2></a></td></tr>
+    <tr><td><a href="${pageContext.request.contextPath}/showProducts"><h2>Products</h2></a></td></tr>
 </table>
 
 </body>
