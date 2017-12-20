@@ -10,6 +10,9 @@
 <html>
 <head>
     <title>Manufacturers</title>
+    <style type="text/css">
+        tr.grey { background: lightgrey;}
+    </style>
 </head>
 <body>
 
@@ -18,7 +21,7 @@
 <form action="<c:url value="/showManufacturers"/>" method="POST">
 <table border="1">
     <CAPTION>List of Manufacturers</CAPTION>
-    <tr>
+    <tr class="grey">
         <th></th>
         <th>Id</th>
         <th>Name</th>

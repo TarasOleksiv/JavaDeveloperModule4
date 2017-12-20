@@ -24,6 +24,15 @@ public class ProductListServlet extends HttpServlet {
         ProductDAO productDAO = new HibernateProductDAOImpl();
         ManufacturerDAO manufacturerDAO = new HibernateManufacturerDAOImpl();
 
+        if(request.getParameter("Edit")!= null) {  //при натисканні на кнопку Edit
+            if (request.getParameter("productId") != null) {
+                request.setAttribute("product",productDAO.getById(UUID.fromString(request.getParameter("productId"))));
+                request.setAttribute("listManufacturers",manufacturerDAO.getAll());  //створюєм атрибут який виводить список всіх виробників
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("productEdit.jsp");  //перескакуєм на productEdit.jsp
+                requestDispatcher.forward(request,response);
+            }
+        }
+
         if(request.getParameter("Add")!= null){  //при натисканні на кнопку Add
             Product product = new Product(); //створюєм екземпляр класу моделі бази даних
             product.withName(request.getParameter("name"))

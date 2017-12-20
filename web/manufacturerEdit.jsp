@@ -18,10 +18,16 @@
 <form action="<c:url value="/editManufacturer"/>" method="POST">
     <input type="hidden" name="manufacturerId" value="${manufacturer.id}"/>
     <table>
-        <CAPTION>Edit manufacturer ${manufacturer.name}</CAPTION>
+        <tr>
+            <th>Edit manufacturer:</th>
+            <th><i><u>${manufacturer.name}</u></i></th>
+        </tr>
+    </table>
+    <p></p>
+    <table>
         <tr>
             <td>New name</td>
-            <td><input type="text" name="newName" value="${manufacturer.name}"></td>
+            <td><input type="text" name="newName" value="${manufacturer.name}" size="30"></td>
         </tr>
         <tr>
             <td><input type="submit" value="Save" name="Save"/></td>

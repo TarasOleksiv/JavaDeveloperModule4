@@ -10,6 +10,9 @@
 <html>
 <head>
     <title>Products</title>
+    <style type="text/css">
+        tr.grey { background: lightgrey;}
+    </style>
 </head>
 <body>
 
@@ -18,7 +21,7 @@
 <form action="<c:url value="/showProducts"/>" method="POST">
     <table border="1">
         <CAPTION>List of Products</CAPTION>
-        <tr>
+        <tr class="grey">
             <th></th>
             <th>Id</th>
             <th>Name</th>
@@ -51,7 +54,7 @@
         <CAPTION>Create new product</CAPTION>
         <tr>
             <td>Name:</td>
-            <td><input type="text" name="name"></td>
+            <td><input type="text" name="name" size="50"></td>
         </tr>
         <tr>
             <td>Price:</td>
