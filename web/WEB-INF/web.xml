@@ -5,13 +5,23 @@
          version="3.1">
 
     <servlet>
-        <servlet-name>ManufacturerServlet</servlet-name>
-        <servlet-class>ua.goit.java8.javadeveloper.controller.servlet.ManufacturerServlet</servlet-class>
+        <servlet-name>ManufacturerListServlet</servlet-name>
+        <servlet-class>ua.goit.java8.javadeveloper.controller.servlet.ManufacturerListServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ManufacturerEditServlet</servlet-name>
+        <servlet-class>ua.goit.java8.javadeveloper.controller.servlet.ManufacturerEditServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>ManufacturerServlet</servlet-name>
+        <servlet-name>ManufacturerListServlet</servlet-name>
         <url-pattern>/showManufacturers</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ManufacturerEditServlet</servlet-name>
+        <url-pattern>/editManufacturer</url-pattern>
     </servlet-mapping>
 
 </web-app>

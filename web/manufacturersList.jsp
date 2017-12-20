@@ -9,17 +9,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Manufacturers</title>
 </head>
 <body>
+
+<p><a href="${pageContext.request.contextPath}">Back to the main page</a></p>
+
+<form action="<c:url value="/showManufacturers"/>" method="POST">
 <table border="1">
     <CAPTION>List of Manufacturers</CAPTION>
     <tr>
-        <td>id</td>
-        <td>name</td>
+        <th></th>
+        <th>id</th>
+        <th>name</th>
+        <th></th>
+        <th></th>
     </tr>
     <c:forEach items="${list}" var="list">
         <tr>
+            <th><input type="radio" name="manufacturerId" value="${list.id}"></th>
             <th>${list.id}</th>
             <th>${list.name}</th>
             <th><a href="/showManufacturers?action=update&id=<c:out value="${list.id}"/>">update</a> </th>
@@ -27,5 +35,29 @@
         </tr>
     </c:forEach>
 </table>
+
+<p></p>
+
+<table>
+    <tr>
+        <td><input type="submit" value="Edit" name="Edit"/></td>
+        <td><input type="submit" value="Delete" name="Delete"/></td>
+    </tr>
+</table>
+
+    <p></p>
+
+<table>
+    <CAPTION>Create new manufacturer</CAPTION>
+    <tr>
+        <td>Name</td>
+        <td><input type="text" name="name"></td>
+        <td><input type="submit" value="Add" name="Add"/></td>
+    </tr>
+</table>
+</form>
+
+<p><a href="${pageContext.request.contextPath}">Back to the main page</a></p>
+
 </body>
 </html>
