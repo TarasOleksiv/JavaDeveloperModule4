@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -21,14 +23,36 @@ public class ManufacturerEditServlet extends HttpServlet {
         ManufacturerDAO manufacturerDAO = new HibernateManufacturerDAOImpl();
 
         if(request.getParameter("Save")!= null) {  //при натисканні на кнопку Save
-            Manufacturer manufacturer = new Manufacturer(); //створюєм екземпляр класу моделі бази даних
-            manufacturer.withId(UUID.fromString(request.getParameter("manufacturerId")))
-                    .withName(request.getParameter("newName"));
-            manufacturerDAO.update(manufacturer);   //оновлюєм виробника
 
-            request.setAttribute("list",manufacturerDAO.getAll());  //створюєм атрибут який виводить список всіх виробників
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("manufacturersList.jsp");  //перескакуєм на manufacturersList.jsp
-            requestDispatcher.forward(request,response);
+            // Обробка реквесту: перевіряємо введені дані і виводимо результат в тому самому JSP
+
+            // підговка повідомлення.
+            Map<String, String> messages = new HashMap<String, String>();
+            request.setAttribute("messages", messages);
+
+            // Отримуємо імя та перевіряєм чи воно непорожнє.
+            String newName = request.getParameter("newName");
+            if (newName == null || newName.trim().isEmpty()) {    // посилаємо повідомлення про недобре введені дані
+                messages.put("newName", "Please enter name");
+            }
+
+            if (messages.isEmpty()) {   // Якщо немає помилок, втілюєм бізнес-логіку
+                Manufacturer manufacturer = new Manufacturer(); //створюєм екземпляр класу моделі бази даних
+                manufacturer.withId(UUID.fromString(request.getParameter("manufacturerId")))
+                        .withName(request.getParameter("newName"));
+                manufacturerDAO.update(manufacturer);   //оновлюєм виробника
+
+                request.setAttribute("list",manufacturerDAO.getAll());  //створюєм атрибут який виводить список всіх виробників
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("manufacturersList.jsp");  //перескакуєм на manufacturersList.jsp
+                requestDispatcher.forward(request,response);
+            } else {    // Якщо є помилки, повертаєм назад на сторінку редагування
+                if (request.getParameter("manufacturerId") != null) {
+                    request.setAttribute("manufacturer",manufacturerDAO.getById(UUID.fromString(request.getParameter("manufacturerId"))));
+                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("manufacturerEdit.jsp");  //перескакуєм на manufacturerEdit.jsp
+                    requestDispatcher.forward(request,response);
+                }
+            }
+
         }
 
         if(request.getParameter("Cancel")!= null) {  //при натисканні на кнопку Cancel

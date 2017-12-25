@@ -1,6 +1,6 @@
 package ua.goit.java8.javadeveloper.console.menu;
 
-import ua.goit.java8.javadeveloper.controller.ProductController;
+import ua.goit.java8.javadeveloper.console.controller.ProductController;
 
 import java.util.Scanner;
 

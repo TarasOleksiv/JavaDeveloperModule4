@@ -1,4 +1,4 @@
-package ua.goit.java8.javadeveloper.controller;
+package ua.goit.java8.javadeveloper.console.controller;
 
 import ua.goit.java8.javadeveloper.dao.ManufacturerDAO;
 import ua.goit.java8.javadeveloper.dao.hibernate.HibernateManufacturerDAOImpl;

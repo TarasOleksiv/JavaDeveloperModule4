@@ -1,9 +1,9 @@
 package ua.goit.java8.javadeveloper;
 
+import ua.goit.java8.javadeveloper.console.menu.MainMenu;
 import ua.goit.java8.javadeveloper.dao.utils.ConnectionUtil;
 import ua.goit.java8.javadeveloper.dao.utils.HibernateUtil;
 import ua.goit.java8.javadeveloper.dao.utils.RunSqlScript;
-import ua.goit.java8.javadeveloper.console.menu.MainMenu;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,7 +13,7 @@ import java.sql.Statement;
 /**
  * Created by t.oleksiv on 08/11/2017.
  */
-public class ConsoleApp {
+public class CheckDB {
 
     public static final Settings settings = new Settings();
 
@@ -21,7 +21,6 @@ public class ConsoleApp {
         String dbName = HibernateUtil.getHibernateConnectionDBname();
         // якщо бази із вказаною назвою не існує, створюєм базу на сервері
         if (!checkDB(dbName)) initializeDB(dbName);
-        new MainMenu();
         HibernateUtil.getSessionFactory().close();
     }
 

@@ -1,6 +1,8 @@
 package ua.goit.java8.javadeveloper;
 
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Properties;
 
 /**
@@ -10,7 +12,7 @@ import java.util.Properties;
 // клас налаштувань
 public class Settings {
 
-    private static final String CONFIG_FILE_PATH = "src/main/resources/config.properties";
+    private static final String CONFIG_FILE_PATH = "config.properties";
 
     private String initDBSqlPath;   // шлях до файла зі скриптом ініціалізації бази
     private String populateDBSqlPath;   // шлях до файла зі скриптом заливки даних
@@ -40,12 +42,15 @@ public class Settings {
         OutputStream output = null;
 
         try {
-
-            output = new FileOutputStream(CONFIG_FILE_PATH);
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            URL url = classLoader.getResource(CONFIG_FILE_PATH);
+            if (url != null) {
+                output = new FileOutputStream(new File(url.toURI()));
+            }
 
             // set the properties value
-            prop.setProperty("initDBSqlPath", "src/main/resources/initDB.sql");
-            prop.setProperty("populateDBSqlPath", "src/main/resources/populateDB.sql");
+            prop.setProperty("initDBSqlPath", "initDB.sql");
+            prop.setProperty("populateDBSqlPath", "populateDB.sql");
 
             String comments = "    String initDBSqlPath: path to the file for the database initialization\n" +
                     "    String populateDBSqlPath: path to the file for the data population";
@@ -53,7 +58,7 @@ public class Settings {
             // save properties to project root folder
             prop.store(output, comments);
 
-        } catch (IOException io) {
+        } catch (IOException | URISyntaxException io) {
             io.printStackTrace();
         } finally {
             if (output != null) {
@@ -73,7 +78,8 @@ public class Settings {
 
         try {
 
-            input = new FileInputStream(CONFIG_FILE_PATH);
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            input = classLoader.getResourceAsStream(CONFIG_FILE_PATH);
 
             // load a properties file
             prop.load(input);
@@ -96,7 +102,7 @@ public class Settings {
     }
 
     //public static void main(String[] args) {
-        //saveSettings();
-        //readSettings();
+    //saveSettings();
+    //readSettings();
     //}
 }

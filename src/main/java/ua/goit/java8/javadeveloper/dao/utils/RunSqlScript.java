@@ -6,9 +6,7 @@ package ua.goit.java8.javadeveloper.dao.utils;
 
 import com.ibatis.common.jdbc.ScriptRunner;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.Reader;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -29,8 +27,10 @@ public class RunSqlScript {
             ScriptRunner sr = new ScriptRunner(con, false, false);
 
             // Give the input file to Reader
-            Reader reader = new BufferedReader(
-                    new FileReader(aSQLScriptFilePath));
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            InputStream input = classLoader.getResourceAsStream(aSQLScriptFilePath);
+            InputStreamReader inputStreamReader = new InputStreamReader(input);
+            Reader reader = new BufferedReader(inputStreamReader);
 
             // Execute script
             sr.runScript(reader);
@@ -38,6 +38,14 @@ public class RunSqlScript {
         } catch (Exception e) {
             System.err.println("Failed to Execute " + aSQLScriptFilePath
                     + " The error is: " + e.getMessage());
+        }
+
+        try {
+            con.close();
+        } finally {
+            if(con != null){
+                con.close();
+            }
         }
     }
 }
