@@ -8,6 +8,7 @@ import ua.goit.java8.javadeveloper.model.Product;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,8 @@ import java.util.UUID;
 /**
  * Created by t.oleksiv on 20/12/2017.
  */
+
+@WebServlet("/showProducts")
 public class ProductListServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

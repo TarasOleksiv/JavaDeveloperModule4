@@ -6,6 +6,7 @@ import ua.goit.java8.javadeveloper.model.Manufacturer;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,8 @@ import java.util.UUID;
 /**
  * Created by Taras on 19.12.2017.
  */
+
+@WebServlet("/showManufacturers")
 public class ManufacturerListServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
