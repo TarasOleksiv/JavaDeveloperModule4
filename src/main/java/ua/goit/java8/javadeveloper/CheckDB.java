@@ -1,6 +1,5 @@
 package ua.goit.java8.javadeveloper;
 
-import ua.goit.java8.javadeveloper.console.menu.MainMenu;
 import ua.goit.java8.javadeveloper.dao.utils.ConnectionUtil;
 import ua.goit.java8.javadeveloper.dao.utils.HibernateUtil;
 import ua.goit.java8.javadeveloper.dao.utils.RunSqlScript;
